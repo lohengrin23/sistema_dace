@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SistemaDace</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<p class="notice" style="<%= "display:none;" if notice.nil?%>"><%= notice %></p>
+    <p class="alert" style="<%= "display:none;" if alert.nil?%>"><%= alert %></p>
+    <header>
+    	<nav>
+    		<ul class= "nav nav-pills" >
+    			<li>
+    				<%= link_to "Inicio", root_path %>
+    			</li>
+    			<% if usuario_signed_in?%>
+    				
+                    <li>
+    					<%= link_to "Editar Perfil", edit_usuario_registration_path(current_usuario)%>
+    				</li>
+    				<li>
+    					<%= link_to "Cerrar Sesion", destroy_usuario_session_path, method: :delete %>
+    				</li>
+    				<li>
+    					<%=link_to "Constancia de estudio", root_path%>
+    				</li>
+    				<li>
+    					<%= link_to "Ingresar Nuevo Estudiante", estudiantes_path%>
+    				</li>
+    				<li>
+    					<%=link_to "Postear Eventos", eventos_path%>
+    				</li>
+    				<li>
+    					<%=link_to "Cargar Archivos", root_path%>
+    				</li>
+    			<%else%>
+    				
+                    <li>
+    					<%=link_to "Ingresar", new_usuario_session_path%>
+    				</li>
+    				<li>
+    					<%=link_to "Carreras", root_path%>
+    				</li>
+    				<li>
+    					<%=link_to "Instructivos y Reglamentos", root_path%>
+    				</li>
+    				<li>
+    					<%=link_to "Descargas", root_path%>
+    				</li>
+    				<li>
+    					<%=link_to "Eventos Importantes", eventos_path%>
+    				</li>
+    			<%end%>
+    		</ul>
+    	</nav>
+    </header>
+	<%= yield %>
+
+</body>
+</html>
